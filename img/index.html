@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+    <title>Paralanx Web-GIS</title>
+
+
+</head>
+<style>
+    *,
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .paralanx {
+        /* background-color: aqua; */
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .intro {
+        /* background-image: url('/img/hutan2.jpg'); */
+        background-color: aqua;
+    }
+
+    .content {
+        /* background-image: url('/img/food.jpg'); */
+        background-color: cornflowerblue;
+        position: flex;
+        height: 50vh;
+    }
+
+
+    .cvr {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .title {
+        font-size: 25px;
+        font-family: 'Lucida Console';
+    }
+
+    .cvr p {
+        display: relative;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* .isi {
+        display: inline-flex;
+        align-items: center;
+        height: 50vh;
+        font-size: 15px;
+        font-family: 'Patrick Hand', cursive;
+        color: white;
+        justify-content: center;
+    } */
+    .isi {
+        position: absolute;
+        padding: 20px;
+        display: inline-block;
+        background-color: transparent;
+        height: 50vh;
+    }
+
+    .isi h2 {
+        padding: 3vw;
+        display: absolute;
+        font-size: 25px;
+        color: black;
+    }
+
+    .isi p {
+        padding: 3vw;
+        display: inline-block;
+        position: relative;
+        font-size: 15px;
+        font-weight: 300;
+        color: red;
+    }
+
+    .footer {
+        /* background-image: url('/img/hutan.jpg'); */
+        background-color: black;
+        position: flex;
+        align-items: center;
+        height: 100vh;
+        padding: 10px;
+    }
+
+    .footer h1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: 10px 0 15px 0;
+        color: white;
+    }
+
+    #map {
+        margin: 5px 0 5px 0;
+        position: relative;
+        height: 500px;
+        width: 80%;
+    }
+</style>
+
+<body>
+    <!-- intro -->
+    <div class="paralanx intro">
+        <div class="cvr">
+            <h1 class="cvr title">Hai!</h1>
+            <p>Scroll Down!</p>
+        </div>
+    </div>
+
+    <!-- content -->
+    <div class="paralanx content">
+        <div class="isi">
+            <h2>About Us!</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam enim atque saepe quibusdam
+                dolorem? Pariatur perspiciatis saepe molestias rem iure itaque dolorum error, eius sunt quod obcaecati
+                nam dolorem quasi reprehenderit ab amet architecto omnis officiis repellendus autem veniam consequatur
+                maiores! Quis cumque voluptatem autem vitae ad mollitia distinctio nihil asperiores, qui tenetur fuga
+                necessitatibus omnis aspernatur modi perspiciatis? <br>
+            </p>
+        </div>
+    </div>
+
+    <!-- map -->
+    <div class="paralanx footer">
+        <div>
+            <h1>Map Pemetaan </h1>
+            <!-- kepekso :) -->
+            <center>
+                <div id="map"></div>
+            </center>
+
+        </div>
+    </div>
+
+    <script>
+        // var map = L.map('map').setView([51.505, -0.09], 13);
+    </script>
+    <script>
+        var map = L.map('map').setView([-7.7932872, 110.3698249], 13);
+
+        var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    </script>
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin="">
+    </script>
+
+    <script src="mapping.js"></script>
+
+    <script>
+        var googleSat = L.tileLayer('http://{s}.google.com/vt?lyrs=s&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+        googleSat.addTo(map)
+
+        // layer control
+        var baseLayers = {
+            "OpenStreetMap": osm,
+            // "google Map": googleStreets,
+            "google satelite": googleSat,
+        };
+
+        var overlays = {
+            "kampus": kampus,kampus2,
+            "resto": resto,
+
+        };
+
+        L.control.layers(baseLayers, overlays).addTo(map);
+    </script>
+</body>
+
+</html>

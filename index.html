@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map2.testing</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <style>
+        *,
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        .jarak {
+            height: 100vh;
+            width: 100%;
+        }
+
+        .j3 {
+            background-color: rgb(65, 63, 63);
+        }
+
+        .txt-crd {
+            background-color: slategrey;
+            text-decoration: none;
+            border: none;
+            font-size: 15px;
+        }
+
+        .jarak {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+
+        .first {
+            background-size: cover;
+            background-attachment: fixed;
+            background-image: url(/wllppr/first.jpeg);
+        }
+
+        .title {
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            font-family: 'monospace';
+        }
+
+        .title p {
+            text-align: center;
+            position: center;
+            /* background-color: black; */
+            color: white;
+        }
+
+        #map {
+            height: 500px;
+            width: 90%;
+        }
+
+        .peta {
+            background-color: rgb(207, 207, 207);
+            /* background-image: url(/wllppr/second5.jpeg); */
+            height: 100vh;
+            width: 100%;
+        }
+
+        .txt1 {
+            color: white;
+            text-align: center;
+            padding-top: 15px;
+            font-size: 20px;
+            background-color: rgb(83, 83, 83);
+            /* opacity: 0.5; */
+        }
+
+        .txt2 {
+            color: white;
+            text-align: center;
+            padding-top: 15px;
+            font-size: 20px;
+            background-color: dimgray;
+        }
+
+        .footer {
+            text-align: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 20px;
+            height: 50vh;
+            width: 100%;
+            color: white;
+            background-color: rgb(46, 46, 46);
+            /* background-image: url(/wllppr/third1.jpeg); */
+        }
+
+        li {
+            color: white;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        .t2 {
+            font-size: 25px;
+            color: white;
+            background-color: red;
+        }
+
+        .fp {
+            color: red;
+        }
+
+        .tw {
+            color: cornflowerblue;
+        }
+
+        .smr {
+            color: crimson;
+        }
+
+        .mnm {
+            color: gold;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- front -->
+    <div class="jarak first">
+        <div class="title">
+            <h1>HAI!</h1>
+            <p>Berikut merupakan hasil dari pemetaan beberapa lokasi yang terdapat dikota <span
+                    class="t2">Yogyakarta</span></p>
+        </div>
+    </div>
+    <!-- map -->
+    <div class="jarak  peta">
+        <div id="map"></div>
+    </div>
+    <!-- legend -->
+    <div class="txt1 ">
+        <p>Legend</p>
+        <footer class="h-50 text-center jarak  footer">
+            <!-- Grid container -->
+            <div class="container p-4">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase fp">Fasilitas Public</h5>
+
+                        <ul class="list-unstyled li mb-0 text-light">
+                            <li>
+                                <p>Pom Bensin</p>
+                            </li>
+                            <li>
+                                <p>Bank</p>
+                            </li>
+                            <li>
+                                <p>Kantor Polisi</p>
+                            </li>
+                            <li>
+                                <p>Rumah Sakit</p>
+                            </li>
+                            <li>
+                                <p>dll.</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase tw">Tempat Wisata</h5>
+
+                        <ul class="list-unstyled li text-light">
+                            <li>
+                                <p>Pemancingan</p>
+                            </li>
+                            <li>
+                                <p>Pantai</p>
+                            </li>
+                            <li>
+                                <p>Paralayang</p>
+                            </li>
+                            <li>
+                                <p>Air Terjun</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase smr">Spot Menarik</h5>
+
+                        <ul class="list-unstyled li mb-0 text-light">
+                            <li>
+                                <p>Spot - Berfoto</p>
+                            </li>
+                            <li>
+                                <p>Spot - Jajan</p>
+                            </li>
+                            <li>
+                                <p>Spot - Belanja</p>
+                            </li>
+                            <li>
+                                <p>dll</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase mnm">Monumen</h5>
+
+                        <ul class="list-unstyled li text-light">
+                            <li>
+                                <p>Monumen Jogja Kembali</p>
+                            </li>
+                            <li>
+                                <p>Monumen Perjuangan</p>
+                            </li>
+                            <li>
+                                <p>Monumen TNI AD</a>
+                            </li>
+                            <li>
+                                <p>dll.</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+            <!-- Grid container -->
+    </div>
+
+    <footer class="text-center text-white" style="background-color: rgb(38, 39, 41)">
+        <!-- Grid container -->
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: black;">
+            © 2022 Copyright : Bambang.v.1
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+
+    <script src="setting.js"></script>
+    <script src="data.js"></script>
+
+</body>
+
+</html>
